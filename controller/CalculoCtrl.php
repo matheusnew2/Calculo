@@ -6,7 +6,7 @@ class CalculoCtrl{
     public $percent;
     public function CalculoCtrl(){
         session_start();
-        if(isset($_GET['restart'])){
+        if(isset($_POST['restart'])){
             session_destroy();
         }else{
             $this->calcula();
@@ -14,11 +14,14 @@ class CalculoCtrl{
         }
     }
     public function calcula(){
-        if(isset($_GET['valorDepositado']) && isset($_GET['percent']) && isset($_GET['meses'])){
-            $this->valorDepositado = $valorDepositado = $_GET['valorDepositado'];
-            $this->percent = $_GET['percent'];
-            $percent = "1.".$_GET['percent'];
-            $this->meses = $meses  = $_GET['meses'];
+     
+        if(isset($_POST['valorDepositado']) && isset($_POST['percent']) && isset($_POST['meses'])){
+            
+            
+            $this->valorDepositado = $valorDepositado = $_POST['valorDepositado'];
+            $this->percent = $_POST['percent'];
+            $percent = "1.".$_POST['percent'];
+            $this->meses = $meses  = $_POST['meses'];
             $valor = $valorDepositado;
             if(isset($_SESSION['val'])){
                 $valor = $_SESSION['total']; 
@@ -30,8 +33,8 @@ class CalculoCtrl{
             $valor = $valor * $percent;
             for($i=1;$i<=$meses-1;$i++)
             {
-                $valor += $_GET['valorDepositado'];
-                $valorDepositado += $_GET['valorDepositado'];
+                $valor += $_POST['valorDepositado'];
+                $valorDepositado += $_POST['valorDepositado'];
                 $this->array[$i]['valorDepositado'] = $valorDepositado;
                 $this->array[$i]['valor'] = ($valor * $percent);
                 $this->array[$i]['lucro'] = $valor * $percent - $valor;

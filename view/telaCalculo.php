@@ -7,43 +7,65 @@ $objCalculoCtrl = new CalculoCtrl();
 <html>
     <head>
         <title>Pagina Inicial</title>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
-table, th, td {
-    border: 1px solid black;
-}
+
 </style>
     </head>
-    <body>
-        <table cellspacing="3" style="width: 50%; border: 2px solid black">
-            <tr style="font-size: 16px;font-weight: bold"> 
+    <body class="body" style="margin-left: 5px;margin-right: 5px">
+        <table class="table table-dark" >
+            <tr class="tr"style="font-size: 16px;font-weight: bold"> 
+                <td>#</td>
                 <td>Valor depositado</td>
                 <td>Lucro:</td>
                 <td>Valor total:</td>
             </tr>
             <?php
             if(isset($_SESSION['val'])){
+                $cont = 1;
                 foreach($_SESSION['val'] as $array){
                     foreach($array as $a){
                 ?>
-            <tr style=" border: 1px solid black;"> 
-                <td><?=$a['valorDepositado']?></td>
-                <td><?=$a['lucro']?></td>
-                <td><?=$a['valor']?></td>
+            <tr> 
+                <td><?=$cont?></td>
+                <td>R$ <?= number_format($a['valorDepositado'], 2, ",",".")?></td>
+                <td>R$ <?= number_format($a['lucro'], 2, ",",".")?></td>
+                <td>R$ <?= number_format($a['valor'], 2, ",",".")?></td>
             </tr>
             <?php
+            $cont++;
                     }
                 }
             }
             ?>
             
         </table>
-        <form action="telaCalculo.php" method="get">
-            <br>
-            Valor depositado: <input type="text" name="valorDepositado" value="<?=$objCalculoCtrl->valorDepositado?>">     Quantidade de meses: <input type="text" name="meses" value="<?=$objCalculoCtrl->meses?>">     Porcentagem: <input type="text" name="percent" value="<?=$objCalculoCtrl->percent?>">      
-            <br>
-            <input type="submit" value="Calcular">
-            <br>
-            <input type="submit" name="restart" value="restart">
+        <form action="telaCalculo.php" method="POST" class="form-group" enctype="multipart/form-data">
+            <div class="">
+                <div class="row" >
+                    <div class="col-lg-6">
+                        Valor depositado: <input type="text" class="form-control"  name="valorDepositado" value="<?=$objCalculoCtrl->valorDepositado?>"> 
+                    </div> 
+                    <div class="col-lg-6">
+                        Quantidade de meses: <input type="text" name="meses" class="form-control"   value="<?=$objCalculoCtrl->meses?>"> 
+                    </div>
+                    <div class="col-lg-12">
+                        Porcentagem: <input type="text" class="form-control"   name="percent" value="<?=$objCalculoCtrl->percent?>">      
+                    </div>
+
+                    <div style="padding-top: 5px; padding-left: 15px">
+                        <input class="btn btn-success" type="submit" value="Calcular">
+
+                        <input class="btn btn-danger"  type="submit" name="restart" value="Restart">
+                        
+                            <a onclick="window.open('importarCsv.php')">
+                                <input type="button" value="Importar" class=" btn btn-primary" >
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+                    
         </form>
         
     </body>
