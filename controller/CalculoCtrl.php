@@ -8,6 +8,7 @@ class CalculoCtrl{
         session_start();
         if(isset($_POST['restart'])){
             session_destroy();
+			header("Location: telaCalculo.php");
         }else{
             $this->calcula();
 

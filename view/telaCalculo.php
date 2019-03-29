@@ -8,9 +8,6 @@ $objCalculoCtrl = new CalculoCtrl();
     <head>
         <title>Pagina Inicial</title>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <style>
-
-</style>
     </head>
     <body class="body" style="margin-left: 5px;margin-right: 5px">
         <table class="table table-dark" >
@@ -55,17 +52,14 @@ $objCalculoCtrl = new CalculoCtrl();
 
                     <div style="padding-top: 5px; padding-left: 15px">
                         <input class="btn btn-success" type="submit" value="Calcular">
-
-                        <input class="btn btn-danger"  type="submit" name="restart" value="Restart">
-                        
-                            <a onclick="window.open('importarCsv.php')">
-                                <input type="button" value="Importar" class=" btn btn-primary" >
-                            </a>
-                        
+                        <input class="btn btn-danger"  type="submit" name="restart" value="Restart">    
+						<input class="btn btn-warning" type="button" name="compra_venda" onclick="window.location.href='calc_compra_vende.php'" value="Comprar / Vender">
+						<a onclick="window.open('importarCsv.php')">
+							<input type="button" value="Importar" class=" btn btn-primary" >
+						</a>                       
                     </div>
                 </div>
-            </div>
-                    
+            </div>                    
         </form>
         
     </body>
